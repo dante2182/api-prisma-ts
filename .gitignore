@@ -10,4 +10,8 @@ src/generated/prisma
 # Environment variables
 .env
 
+# Lock files
+pnpm-lock.yaml
+
+
 

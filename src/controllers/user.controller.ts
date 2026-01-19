@@ -1,6 +1,7 @@
 import prisma from "../config/db.js";
 import { Request, Response } from "express";
 import { createUserSchema, updateUserSchema } from "../schemas/user.schema.js";
+import argon2 from "argon2";
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
@@ -51,7 +52,10 @@ export const createUser = async (req: Request, res: Response) => {
     }
 
     const user = await prisma.user.create({
-      data: validatedData,
+      data: {
+        ...validatedData,
+        password: await argon2.hash(validatedData.password),
+      },
     });
 
     res.status(201).json(user);
@@ -74,7 +78,12 @@ export const updateUser = async (
 
     const user = await prisma.user.update({
       where: { id },
-      data: validatedData,
+      data: {
+        ...validatedData,
+        ...(validatedData.password
+          ? { password: await argon2.hash(validatedData.password) }
+          : {}),
+      },
     });
 
     res.json(user);
