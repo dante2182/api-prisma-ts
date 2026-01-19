@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022" /* Node 20+ soporta ES2022 nativamente */,
+    "module": "NodeNext" /* Gestiona imports modernos de Node */,
+    "moduleResolution": "NodeNext",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true /* Calidad de código obligatoria */,
+    "esModuleInterop": true /* Compatibilidad con librerías viejas de Express */,
+    "skipLibCheck": true /* Velocidad al compilar */,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "sourceMap": true /* Vital para hacer debug con Prisma */
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+}
