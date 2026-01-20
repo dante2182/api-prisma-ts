@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+// Schema para validar UUID (ajusta según tu configuración de IDs)
+export const uuidSchema = z.string().uuid();
+
 export const createUserSchema = z.object({
   email: z.string().email("Invalid Email Format"),
   name: z.string().min(2, "Name must be at least 2 characters").optional(),
